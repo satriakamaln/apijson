@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .card {
+        background-color: aqua;
+    }
+</style>
+
+<body>
+    <!-- <button onclick="getUser()">CLick!!</button> -->
+    <div class="data">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function getUser() {
+            // $.ajax("https://jsonplaceholder.typicode.com/users", function (data) {
+            //     data.map(function (user) {
+            //         $('#data').append(
+            //             `<p class="card">${user.id}</p>`
+            //         )
+            //     })
+            // });
+
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/users',
+                method: 'GET',
+                success: function (data) {
+                    data.map(function (user) {
+                        $('#data').append(
+                            `<tr class="card">
+                                <td>${user.id}</td>
+                                <td>${user.name}</td>
+                            </tr>`
+                        )
+                    })
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            getUser();
+        });
+    </script>
+
+</body>
+
+</html>

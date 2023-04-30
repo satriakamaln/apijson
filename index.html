@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .card {
+        background-color: aqua;
+    }
+</style>
+
+<body>
+    <button onclick="getUser()">Click!!</button>
+    <div id="data">
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+        integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous">
+        </script>
+
+    <script>
+        function getUser() {
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            fetch('https://jsonplaceholder.typicode.com/users', requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    result.map(function (user) {
+                        // // let data = document.getElementById('data');
+                        // let p = document.createElement('p');
+                        // data.append(
+                        //     p.innerHTML = user.id
+                        // );
+
+                        $('#data').append(
+                            `<p class="card">${user.id}</p>`
+                        )
+                    })
+                })
+                .catch(function (err) {
+                    // There was an error
+                    console.warn('Something went wrong.', err);
+                });
+        }
+    </script>
+</body>
+
+</html>
